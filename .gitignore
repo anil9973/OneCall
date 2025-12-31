@@ -1,0 +1,17 @@
+build
+**/.vscode
+extension/crx-hmr.js
+extension/onecall.zip
+**/.TODO
+extension/build.sh
+**/jsconfig.json
+**/tsconfig.json
+biome.json
+
+**/node_modules/
+**/dist/
+**/build/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log

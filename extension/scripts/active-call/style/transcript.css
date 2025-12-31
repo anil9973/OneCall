@@ -1,0 +1,53 @@
+@scope (transcript-panel) {
+	details {
+		position: relative;
+	}
+
+	summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: 8px;
+		min-width: 24ch;
+		padding: 2px 4px;
+		font-size: 0.9rem;
+		border-radius: 5px;
+		box-shadow: var(--card);
+		background-color: light-dark(white, black);
+
+		& svg {
+			height: 20px;
+		}
+	}
+
+	& ul {
+		margin-block: 0;
+		padding-left: 0;
+	}
+
+	.transcript-messages {
+		position: absolute;
+		bottom: 15px;
+		z-index: 40;
+		padding: 8px;
+		border-radius: 5px;
+		box-shadow: var(--card);
+		background-color: light-dark(white, black);
+
+		display: flex;
+		flex-direction: column;
+		row-gap: 0.5rem;
+	}
+
+	message-card {
+		font-size: 0.8rem;
+		padding: 4px;
+		border-radius: 5px;
+		box-shadow: var(--card);
+		background-color: light-dark(whitesmoke, hsl(0, 0%, 10%));
+
+		& p {
+			margin-block: 0;
+		}
+	}
+}

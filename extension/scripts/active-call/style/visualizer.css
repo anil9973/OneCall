@@ -1,0 +1,239 @@
+call-visualizer {
+	position: relative;
+	height: 90px;
+}
+
+mic-ring {
+	--size: 3.5rem;
+	--ring-width: 0.5em;
+	display: block;
+	border-radius: 50%;
+	height: var(--size);
+	inline-size: var(--size);
+	box-shadow: var(--card);
+	padding: var(--ring-width);
+	background-color: light-dark(hsl(0, 0%, 100%), rgb(60, 60, 60));
+
+	z-index: 40;
+	position: relative;
+
+	& .coin-ring {
+		border-radius: 50%;
+		height: calc(var(--size) - var(--ring-width) * 2);
+		inline-size: calc(var(--size) - var(--ring-width) * 2);
+		box-shadow: var(--neu-pressed);
+		padding: 0.2em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	& svg[class] path {
+		d: path(
+			"M7.5 11A2.5 2.5 0 0 0 10 8.5v-6a2.5 2.5 0 1 0-5 0v6A2.5 2.5 0 0 0 7.5 11M11 7v1.5a3.5 3.5 0 1 1-7 0V7H3v1.5a4.5 4.5 0 0 0 4 4.472V15H5v1h5v-1H8v-2.028A4.5 4.5 0 0 0 12 8.5V7z"
+		);
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: -2px;
+		border-radius: 50%;
+		padding: 4px;
+		background-image: conic-gradient(from 0deg, transparent 0%, var(--gradient-color) 50%, transparent 100%);
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		opacity: 1;
+		z-index: -1;
+
+		/* animation: rotate-ring 2s linear infinite; */
+	}
+
+	/* State: Listening - Red pulsing */
+	&.listening {
+		--gradient-color: rgb(239, 68, 68);
+		--icon-color: rgb(239, 68, 68);
+
+		&::before {
+			animation: pulse-red 2s ease-in-out infinite;
+		}
+
+		& .coin-ring {
+			animation: pulse-glow 2s ease-in-out infinite;
+		}
+	}
+
+	/* State: Thinking - Blue spinning */
+	&.thinking {
+		--gradient-color: rgb(59, 130, 246);
+		--icon-color: rgb(59, 130, 246);
+
+		&::before {
+			animation: spin-blue 1.5s linear infinite;
+		}
+
+		& svg {
+			animation: pulse-glow 1.5s ease-in-out infinite;
+		}
+	}
+
+	/* State: Acting - Yellow solid */
+	&.acting {
+		--gradient-color: rgb(251, 191, 36);
+		--icon-color: rgb(251, 191, 36);
+
+		&::before {
+			animation: spin-blue 2s linear infinite;
+			opacity: 1;
+		}
+
+		& .coin-ring {
+			animation: pulse-yellow 2s ease-in-out infinite;
+		}
+
+		& svg {
+			animation: spin-blue 3s linear infinite;
+		}
+	}
+
+	/* State: Speaking - Green wave */
+	&.speaking {
+		--gradient-color: rgb(34, 197, 94);
+		--icon-color: rgb(34, 197, 94);
+
+		&::before {
+			animation: pulse-red 1s ease-in-out infinite;
+		}
+
+		& svg {
+			animation: wave-green 0.5s ease-in-out infinite;
+		}
+	}
+}
+
+/* Mic ring animations */
+@keyframes pulse-red {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.7;
+		transform: scale(1.1);
+	}
+}
+
+@keyframes spin-blue {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes pulse-yellow {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+	}
+	50% {
+		box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+	}
+}
+
+@keyframes wave-green {
+	0%,
+	100% {
+		transform: scaleY(1);
+	}
+	50% {
+		transform: scaleY(1.2);
+	}
+}
+
+@keyframes ripple {
+	0% {
+		transform: scale(1);
+		opacity: 0.6;
+		border-width: 4px;
+	}
+	100% {
+		transform: scale(2);
+		opacity: 0;
+		border-width: 0px;
+	}
+}
+@keyframes pulse-opacity {
+	0%,
+	100% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+/* WAVEFORM VISUALIZER (Siri Style) */
+waveform-container {
+	position: absolute;
+	bottom: 10px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	height: 40px;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1;
+
+	transition: all 0.4s var(--ease-spring);
+}
+
+.bar {
+	width: 6px;
+	height: 10px;
+	border-radius: 10px;
+	background: #6366f1;
+	box-shadow: 0 0 10px #6366f1;
+	animation: equalize 1s ease-in-out infinite;
+}
+
+waveform-container.speaking {
+	opacity: 1;
+	translate: 0 10px;
+}
+
+/* Randomize bars for natural look */
+.bar:nth-child(1) {
+	animation-delay: 0s;
+	height: 15px;
+}
+.bar:nth-child(2) {
+	animation-delay: 0.1s;
+	height: 25px;
+}
+.bar:nth-child(3) {
+	animation-delay: 0.2s;
+	height: 20px;
+}
+.bar:nth-child(4) {
+	animation-delay: 0.3s;
+	height: 30px;
+	animation-duration: 0.8s;
+}
+.bar:nth-child(5) {
+	animation-delay: 0.15s;
+	height: 20px;
+}
+
+@keyframes equalize {
+	0%,
+	100% {
+		height: 10px;
+	}
+	50% {
+		height: 100%;
+	}
+}

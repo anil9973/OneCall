@@ -1,0 +1,97 @@
+ivr-option-list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5em;
+	padding-left: 0.8em;
+
+	& li {
+		list-style-type: none;
+		padding: 0.5em;
+		border-radius: 0.5em;
+		filter: drop-shadow(0 9px 7px rgb(0 0 0 / 0.2));
+		background-image: radial-gradient(circle 5px at calc(0px) calc(50%), transparent 14px, var(--main-clr) 0);
+		transition: translate 200ms ease-out, opacity 200ms ease-out;
+		cursor: pointer;
+		position: relative;
+
+		& p {
+			margin-left: 2ch;
+			margin-block: 0;
+			color: white;
+			font-size: small;
+		}
+
+		&:hover {
+			translate: 0 -2px;
+			opacity: 0.9;
+		}
+	}
+
+	/* number coin */
+	& .option-coin {
+		--size: 22px;
+		--ring-width: 0.25em;
+		position: absolute;
+		left: -0.7em;
+		inset-block: 0;
+		margin-block: auto;
+		border-radius: 50%;
+		height: var(--size);
+		inline-size: var(--size);
+		box-shadow: var(--card);
+		padding: var(--ring-width);
+		background-color: light-dark(hsl(0, 0%, 100%), rgb(60, 60, 60));
+
+		& .coin-inner {
+			border-radius: 50%;
+			height: calc(var(--size) - var(--ring-width) * 2);
+			inline-size: calc(var(--size) - var(--ring-width) * 2);
+			box-shadow: var(--neu-pressed);
+			padding: 0.2em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		& .coin-number {
+			color: red;
+			font-size: 0.9rem;
+			font-weight: bold;
+			text-shadow: 1px 1px 1px var(--coin-shadow);
+			text-align: center;
+		}
+	}
+}
+
+user-input {
+	position: relative;
+
+	& label {
+		display: block;
+		padding-left: 5px;
+		font-size: 0.8rem;
+	}
+
+	& textarea {
+		field-sizing: content;
+		min-height: 2lh;
+		min-width: 30ch;
+		max-width: 40ch;
+		padding: 4px;
+		border: var(--border);
+		border-radius: 8px;
+		box-shadow: var(--card);
+
+		&:invalid + svg {
+			visibility: hidden;
+		}
+	}
+
+	& svg.done {
+		height: 18px;
+		position: absolute;
+		right: 5px;
+		bottom: 0;
+		visibility: visible;
+	}
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneCall</title>
+    <script type="module" src="/crx-hmr.js"></script>
+</head>
+
+<body>
+    <h1>OneCall - Universal support assistant</h1>
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+    </style>
+    <button id="startBtn">Start Recording</button>
+    <button id="stopBtn" disabled>Stop Recording</button>
+
+    <audio id="playback" controls></audio>
+    <script type="module" src="./options.js"></script>
+</body>
+
+</html>

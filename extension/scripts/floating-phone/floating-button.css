@@ -1,0 +1,97 @@
+:host {
+	--card: 0 1px 5px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.4);
+	--main-clr: #df00ff;
+	--coin-shadow: rgb(0, 0, 0, 0.2);
+	--neu-pressed: inset 5px 5px 10px #b8b9be, inset -5px -5px 10px #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:host {
+		--card: 0 1px 4px rgba(2, 0, 0, 0.2), 0 1px 2px rgba(200, 200, 200, 0.3);
+		--coin-shadow: rgb(200, 200, 200, 0.2);
+		--border: 1.6px solid hsl(0, 0%, 40%);
+		--icon-clr: white;
+		--neu-pressed: inset 5px 5px 10px #1e2024, inset -5px -5px 10px #3e4249;
+	}
+}
+
+* {
+	box-sizing: border-box;
+}
+
+:host([popover]) {
+	border: none;
+	margin: 0;
+	padding: 0;
+	color: inherit;
+	background: none;
+	border: none;
+	inset: unset;
+	top: 90%;
+	left: 85%;
+	overflow: visible;
+}
+
+:host {
+	color-scheme: light dark;
+	align-items: center;
+}
+
+:host(:hover) .cutout-card {
+	scale: 1;
+	opacity: 1;
+}
+
+:host(:popover-open) {
+	display: flex;
+}
+
+.cutout-card {
+	display: flex;
+	align-items: center;
+	height: 66px;
+	margin-right: -38px;
+	border-radius: 0.5em;
+	filter: drop-shadow(0 9px 7px rgb(0 0 0 / 0.2));
+	background-image: radial-gradient(circle 28px at calc(95%) calc(50%), transparent 32px, var(--main-clr) 0);
+	scale: 0 1;
+	opacity: 0;
+	transform-origin: right center;
+	transition: scale 400ms ease-in 100ms, opacity 400ms ease-out 100ms;
+	cursor: pointer;
+	position: relative;
+
+	& span {
+		padding-inline: 16px 50px;
+		font-weight: bold;
+		font-size: 20px;
+		color: white;
+	}
+}
+
+.phone-coin {
+	--size: 56px;
+	--ring-width: 8px;
+	border-radius: 50%;
+	height: var(--size);
+	width: var(--size);
+	box-shadow: var(--card);
+	padding: var(--ring-width);
+	background-color: light-dark(hsl(0, 0%, 100%), rgb(60, 60, 60));
+
+	& .coin-ring {
+		border-radius: 50%;
+		height: calc(var(--size) - var(--ring-width) * 2);
+		inline-size: calc(var(--size) - var(--ring-width) * 2);
+		box-shadow: var(--neu-pressed);
+		padding: 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	& svg {
+		width: 32px;
+		height: 32px;
+	}
+}

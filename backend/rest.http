@@ -1,0 +1,434 @@
+### OneCall API - REST Client
+
+@baseUrl = http://localhost:3600
+@token = your_jwt_token_here
+
+### Health Check
+GET {{baseUrl}}/health
+
+### ============================================
+### Authentication
+### ============================================
+
+### Signup
+POST {{baseUrl}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "owner@example.com",
+  "password": "securepass123",
+  "name": "John Doe",
+  "company": "My Store Inc"
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "owner@example.com",
+  "password": "securepass123",
+  "firebaseToken": "firebase_token_here"
+}
+
+### Refresh Token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "firebaseToken": "new_firebase_token"
+}
+
+### Get Profile
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+### Update Profile
+PUT {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "company": "Updated Company"
+}
+
+### ============================================
+### Domains
+### ============================================
+
+### Add Domain
+POST {{baseUrl}}/domains
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "domain": "mystore.com"
+}
+
+### List Domains
+GET {{baseUrl}}/domains
+Authorization: Bearer {{token}}
+
+### Get Domain
+GET {{baseUrl}}/domains/domain_abc123
+Authorization: Bearer {{token}}
+
+### Verify Domain
+POST {{baseUrl}}/domains/domain_abc123/verify
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "method": "dns"
+}
+
+### Update Domain Settings
+PUT {{baseUrl}}/domains/domain_abc123
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "allowEscalation": true,
+  "maxAIDuration": 300,
+  "voiceId": "voice_xyz",
+  "autoEscalateKeywords": ["refund", "manager"]
+}
+
+### Delete Domain
+DELETE {{baseUrl}}/domains/domain_abc123
+Authorization: Bearer {{token}}
+
+### Regenerate Verification Code
+POST {{baseUrl}}/domains/domain_abc123/regenerate-code
+Authorization: Bearer {{token}}
+
+### ============================================
+### Calls
+### ============================================
+
+### Start Call
+POST {{baseUrl}}/calls/start
+Content-Type: application/json
+
+{
+  "domain": "mystore.com",
+  "userId": "anon_user_123",
+  "pageUrl": "https://mystore.com/products/abc",
+  "metadata": {
+    "browser": "Chrome",
+    "device": "Desktop"
+  }
+}
+
+### Escalate Call
+POST {{baseUrl}}/calls/escalate
+Content-Type: application/json
+
+{
+  "sessionId": "session_abc123",
+  "reason": "Customer requested human agent",
+  "metadata": {}
+}
+
+### Accept Call
+POST {{baseUrl}}/calls/accept
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "sessionId": "session_abc123"
+}
+
+### End Call
+POST {{baseUrl}}/calls/end
+Content-Type: application/json
+
+{
+  "sessionId": "session_abc123",
+  "reason": "completed",
+  "duration": 180
+}
+
+### Get Active Calls
+GET {{baseUrl}}/calls/active?domain=mystore.com&limit=20
+Authorization: Bearer {{token}}
+
+### ============================================
+### Conversations
+### ============================================
+
+### Test CORS (from extension)
+# This would be called from chrome extension
+# Origin: chrome-extension://your-extension-id
+POST {{baseUrl}}/api/conversation/token
+Content-Type: application/json
+Origin: chrome-extension://abc123
+
+{
+  "websiteType": "ecommerce"
+}
+
+### Start Conversation
+POST {{baseUrl}}/conversations/start
+Content-Type: application/json
+
+{
+  "sessionId": "session_abc123",
+  "domain": "mystore.com",
+  "userId": "anon_user_123",
+  "ownerId": "owner_xyz789"
+}
+
+### Add Message
+POST {{baseUrl}}/conversations/conv_abc123/message
+Content-Type: application/json
+
+{
+  "role": "user",
+  "content": "How do I return an item?",
+  "timestamp": 1735315200000,
+  "audioUrl": "https://storage.example.com/audio.mp3",
+  "duration": 3.5
+}
+
+### End Conversation
+POST {{baseUrl}}/conversations/conv_abc123/end
+Content-Type: application/json
+
+{
+  "resolution": "resolved",
+  "rating": 5,
+  "duration": 300
+}
+
+### Get Conversation
+GET {{baseUrl}}/conversations/conv_abc123
+Authorization: Bearer {{token}}
+
+### List Conversations
+GET {{baseUrl}}/conversations?domain=mystore.com&status=ended&limit=20
+Authorization: Bearer {{token}}
+
+### Search Conversations
+GET {{baseUrl}}/conversations/search?query=refund&domain=mystore.com&limit=10
+Authorization: Bearer {{token}}
+
+### ============================================
+### Knowledge Base
+### ============================================
+
+### Upload Document
+POST {{baseUrl}}/knowledge/domain_abc123/upload
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data
+
+file: @/path/to/document.pdf
+
+### Add FAQ
+POST {{baseUrl}}/knowledge/domain_abc123/faq
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "question": "How do I return an item?",
+  "answer": "Items can be returned within 30 days with original receipt.",
+  "category": "Returns"
+}
+
+### Scrape URL
+POST {{baseUrl}}/knowledge/domain_abc123/scrape
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "url": "https://mystore.com/faq",
+  "title": "FAQ Page"
+}
+
+### List Documents
+GET {{baseUrl}}/knowledge/domain_abc123
+Authorization: Bearer {{token}}
+
+### Get Document
+GET {{baseUrl}}/knowledge/domain_abc123/doc_xyz789
+Authorization: Bearer {{token}}
+
+### Delete Document
+DELETE {{baseUrl}}/knowledge/domain_abc123/doc_xyz789
+Authorization: Bearer {{token}}
+
+### Search Knowledge
+POST {{baseUrl}}/knowledge/domain_abc123/search
+Content-Type: application/json
+
+{
+  "query": "return policy",
+  "limit": 5,
+  "threshold": 0.7
+}
+
+### Get Job Status
+GET {{baseUrl}}/knowledge/jobs/job_abc123
+
+### ============================================
+### Tool Configuration
+### ============================================
+
+### Create Tool
+POST {{baseUrl}}/tool-config/domain_abc123/tools
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Check Inventory",
+  "description": "Get product inventory levels",
+  "type": "http",
+  "enabled": true,
+  "config": {
+    "method": "GET",
+    "url": "https://api.mystore.com/inventory/{sku}",
+    "authType": "bearer",
+    "authValue": "token_xyz",
+    "parameters": [
+      {
+        "name": "sku",
+        "type": "string",
+        "required": true,
+        "description": "Product SKU"
+      }
+    ],
+    "timeout": 10000
+  }
+}
+
+### List Tools
+GET {{baseUrl}}/tool-config/domain_abc123/tools?type=http
+Authorization: Bearer {{token}}
+
+### Get Tool
+GET {{baseUrl}}/tool-config/domain_abc123/tools/tool_xyz789
+Authorization: Bearer {{token}}
+
+### Update Tool
+PUT {{baseUrl}}/tool-config/domain_abc123/tools/tool_xyz789
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "enabled": false
+}
+
+### Delete Tool
+DELETE {{baseUrl}}/tool-config/domain_abc123/tools/tool_xyz789
+Authorization: Bearer {{token}}
+
+### Test Tool
+POST {{baseUrl}}/tool-config/domain_abc123/tools/tool_xyz789/test
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "parameters": {
+    "sku": "ABC123"
+  }
+}
+
+### Add MCP Server
+POST {{baseUrl}}/tool-config/domain_abc123/mcp
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Internal CRM",
+  "serverUrl": "https://mcp.mystore.com",
+  "authToken": "mcp_token_xyz",
+  "enabled": true
+}
+
+### List MCP Servers
+GET {{baseUrl}}/tool-config/domain_abc123/mcp
+Authorization: Bearer {{token}}
+
+### Get MCP Tools
+GET {{baseUrl}}/tool-config/domain_abc123/mcp/mcp_xyz789/tools
+Authorization: Bearer {{token}}
+
+### ============================================
+### Tool Execution
+### ============================================
+
+### Execute Tool
+POST {{baseUrl}}/tools/execute
+Content-Type: application/json
+
+{
+  "sessionId": "session_abc123",
+  "domain": "mystore.com",
+  "toolType": "http",
+  "toolName": "Check Inventory",
+  "parameters": {
+    "sku": "ABC123"
+  }
+}
+
+### Get Execution
+GET {{baseUrl}}/tools/executions/exec_xyz789
+
+### List Executions
+GET {{baseUrl}}/tools/executions?sessionId=session_abc123&limit=50
+
+### Retry Execution
+POST {{baseUrl}}/tools/executions/exec_xyz789/retry
+
+### Get Rate Limit Status
+GET {{baseUrl}}/tools/rate-limit?domain=mystore.com&sessionId=session_abc123
+
+### ============================================
+### Notifications
+### ============================================
+
+### Subscribe
+POST {{baseUrl}}/notifications/subscribe
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "token": "fcm_token_abc123...",
+  "deviceType": "web",
+  "userAgent": "Mozilla/5.0..."
+}
+
+### Unsubscribe
+DELETE {{baseUrl}}/notifications/subscribe/sub_xyz789
+Authorization: Bearer {{token}}
+
+### List Subscriptions
+GET {{baseUrl}}/notifications/subscriptions
+Authorization: Bearer {{token}}
+
+### Send Notification
+POST {{baseUrl}}/notifications/send
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Important Update",
+  "body": "Your order has shipped",
+  "type": "new_message",
+  "priority": "high",
+  "data": {
+    "orderId": "12345"
+  }
+}
+
+### Test Notification
+POST {{baseUrl}}/notifications/test
+Authorization: Bearer {{token}}
+
+### Get Notification History
+GET {{baseUrl}}/notifications/history?limit=50
+Authorization: Bearer {{token}}
+
+### Mark Notification Clicked
+POST {{baseUrl}}/notifications/notif_abc123/clicked
