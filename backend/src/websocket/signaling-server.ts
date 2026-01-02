@@ -1,5 +1,3 @@
-// src/websocket/signaling-server.ts
-
 import type { FastifyInstance } from "fastify";
 import type { WebSocket } from "@fastify/websocket";
 import type { CallStateService } from "../services/call-state.service.js";

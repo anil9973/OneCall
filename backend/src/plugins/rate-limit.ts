@@ -1,5 +1,5 @@
-import fp from "fastify-plugin";
-/* import rateLimit from "@fastify/rate-limit";
+/* import fp from "fastify-plugin";
+import rateLimit from "@fastify/rate-limit";
 
 export default fp(async (fastify) => {
 	await fastify.register(rateLimit, {
@@ -11,4 +11,5 @@ export default fp(async (fastify) => {
 			message: "Rate limit exceeded. Please try again later.",
 		}),
 	});
-}); */
+});
+ */

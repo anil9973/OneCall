@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from "../conversations/components/Icon.svelte";
+	import Icon from "../components/Icon.svelte";
 	import type { KeyValuePair } from "./types/knowledge.js";
 
 	interface Props {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from "../conversations/components/Icon.svelte";
+	import Icon from "../components/Icon.svelte";
 	import HttpRequestEditor from "./HttpRequestEditor.svelte";
 	import HttpResponseEditor from "./HttpResponseEditor.svelte";
 

@@ -1,30 +1,48 @@
 <script>
-	import ConversationApp from "./lib/conversations/components/ConversationPage.svelte";
-	import KnowledgeApp from "./lib/knowledge/KnowledgePage.svelte";
+	import ConversationPage from "./lib/conversations/components/ConversationPage.svelte";
+	import Icon from "./lib/pages/components/Icon.svelte";
+	import KnowledgePage from "./lib/knowledge/KnowledgePage.svelte";
+
+	/* let route = $state(location.pathname);
+	let CurrentPage = $derived.by(() => {
+		switch (route) {
+			case "/":
+				return KnowledgePage;
+			case "/conversations":
+				return KnowledgePage;
+			case "/knowledge":
+				return ConversationPage;
+			default: return NotFound;
+		}
+	});
+
+	navigation.addEventListener("navigate", (event: NavigateEvent) => {
+		event.intercept({
+			handler: async () => (route = new URL(event.destination.url).pathname),
+		});
+	}); */
 </script>
 
 <main>
 	<aside>
 		<nav>
 			<li title="Conversations">
-				<svg class="icon">
-					<use href="/public/icons.svg#conversations"></use>
-				</svg>
+				<Icon name="conversations" />
 			</li>
+
 			<li title="Knowledge Base">
-				<svg class="icon">
-					<use href="/public/icons.svg#knowledge"></use>
-				</svg>
+				<Icon name="knowledge" />
 			</li>
+
 			<li title="Admin Settings">
-				<svg class="icon">
-					<use href="/public/icons.svg#admin"></use>
-				</svg>
+				<Icon name="admin" />
 			</li>
 		</nav>
 	</aside>
-	<!-- <KnowledgeApp /> -->
-	<ConversationApp />
+
+	<!-- <CurrentPage /> -->
+	<!-- <ConversationPage /> -->
+	<KnowledgePage />
 </main>
 
 <style>

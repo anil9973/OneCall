@@ -1,5 +1,3 @@
-// src/lib/utils.ts
-
 import type { MessageRole, TicketStatus, TicketPriority } from "../types/conversations";
 
 export function getRoleIcon(role: MessageRole): string {

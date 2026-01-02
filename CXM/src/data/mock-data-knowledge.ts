@@ -1,4 +1,4 @@
-import type { KnowledgeBook, HttpTool, KeyValuePair } from "../lib/knowledge/types/knowledge.js";
+import type { KnowledgeBook, HttpTool, KeyValuePair } from "../lib/pages/knowledge/types/knowledge.js";
 
 export const MOCK_KNOWLEDGE_BOOKS: KnowledgeBook[] = [
 	{

@@ -1,17 +1,24 @@
 <script lang="ts">
-	import ConversationWorkspace from "./ConversationWorkspace.svelte";
-	import {
-		MOCK_TICKETS,
-		MOCK_MESSAGES,
-		MOCK_SYSTEM_EVENTS,
-		MOCK_TIMELINE_SEGMENTS,
-	} from "../../../data/mock-data.js";
+	import { onMount } from "svelte";
+	import ConversationWorkspace from "./components/ConversationWorkspace.svelte";
+	import { conversationStore, selectedMessages, selectedEvents, selectedTimeline } from "./stores/conversation.store";
+	import { authStore } from "./stores/auth.store";
+	import { domainStore } from "./stores/domain.store";
 
-	let selectedTicketId = $state("ticket-1");
+	let selectedTicketId = $state("");
+
+	onMount(async () => {
+		await authStore.init();
+
+		if ($authStore.user) {
+			await domainStore.load();
+			await conversationStore.load();
+		}
+	});
 
 	function handleTicketSelect(ticketId: string) {
 		selectedTicketId = ticketId;
-		console.log("Selected ticket:", ticketId);
+		conversationStore.select(ticketId);
 	}
 
 	function handleSendMessage(message: string) {
@@ -29,14 +36,18 @@
 	function handleNotesChange(ticketId: string, notes: string) {
 		console.log("Notes changed:", ticketId, notes);
 	}
+
+	async function handleLogout() {
+		await authStore.logout();
+	}
 </script>
 
 <ConversationWorkspace
-	tickets={MOCK_TICKETS}
+	tickets={$conversationStore.list}
 	bind:selectedTicketId
-	messages={MOCK_MESSAGES}
-	events={MOCK_SYSTEM_EVENTS}
-	timelineSegments={MOCK_TIMELINE_SEGMENTS}
+	messages={$selectedMessages}
+	events={$selectedEvents}
+	timelineSegments={$selectedTimeline}
 	onTicketSelect={handleTicketSelect}
 	onSendMessage={handleSendMessage}
 	onStatusChange={handleStatusChange}

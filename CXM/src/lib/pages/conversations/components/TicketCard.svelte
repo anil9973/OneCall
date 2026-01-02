@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getRoleIcon, getStatusIcon } from "../utils/helpers.js";
 	import type { Ticket } from "../types/conversations.js";
-	import Icon from "./Icon.svelte";
+	import Icon from "../../components/Icon.svelte";
 
 	interface Props {
 		ticket: Ticket;

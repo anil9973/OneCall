@@ -18,16 +18,14 @@
 		width: 1.4em;
 		vertical-align: middle;
 		cursor: pointer;
-		transition:
-			fill 200ms ease,
-			transform 200ms ease;
+		transition: scale 200ms ease;
 
 		&:hover {
-			transform: scale(1.1);
+			scale: 1.1;
 		}
 
 		&:active {
-			transform: scale(0.95);
+			scale: 0.9;
 		}
 	}
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { KnowledgeSection } from "./types/knowledge.js";
-	import Icon from "../conversations/components/Icon.svelte";
+	import Icon from "../components/Icon.svelte";
 	import BookSectionBranch from "./BookSectionBranch.svelte";
 
 	interface Props {

@@ -163,10 +163,10 @@ Authorization: Bearer {{token}}
 # Origin: chrome-extension://your-extension-id
 POST {{baseUrl}}/api/conversation/token
 Content-Type: application/json
-Origin: chrome-extension://abc123
+Origin: chrome-extension://klchcjnlkbfoanbgplincdbmecfcpehh
 
 {
-  "websiteType": "ecommerce"
+  "websiteType": "shopping"
 }
 
 ### Start Conversation

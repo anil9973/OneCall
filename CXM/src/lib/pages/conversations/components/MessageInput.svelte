@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from "./Icon.svelte";
+	import Icon from "../../components/Icon.svelte";
 	import MicButton from "./MicButton.svelte";
 
 	interface Props {

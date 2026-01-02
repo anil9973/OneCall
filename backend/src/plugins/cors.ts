@@ -1,4 +1,4 @@
-/* import fp from "fastify-plugin";
+import fp from "fastify-plugin";
 import cors from "@fastify/cors";
 
 export default fp(async (fastify) => {
@@ -7,20 +7,19 @@ export default fp(async (fastify) => {
 			const allowedOrigin = fastify.config.CORS_ORIGIN;
 
 			// Allow chrome extension
-			if (origin?.startsWith("chrome-extension://")) {
+			if (origin?.startsWith("chrome-extension://klchcjnlkbfoanbgplincdbmecfcpehh")) {
 				cb(null, true);
 				return;
 			}
 
 			// Allow configured origin
-			if (origin === allowedOrigin || allowedOrigin === "*") {
-				cb(null, true);
-				return;
-			}
+			// if (origin === allowedOrigin || allowedOrigin === "*") {
+			// 	cb(null, true);
+			// 	return;
+			// }
 
 			cb(new Error("Not allowed by CORS"), false);
 		},
 		credentials: true,
 	});
 });
- */
