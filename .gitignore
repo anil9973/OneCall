@@ -9,7 +9,7 @@ extension/build.sh
 biome.json
 
 **/node_modules/
-**/dist/
+CXM/dist/
 **/build/
 **/.env
 **/.env.*
