@@ -52,13 +52,13 @@
 		&:hover {
 			translate: 0 -2px;
 		}
+	}
 
-		.ai-header-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 0.75em;
-		}
+	.ai-header-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.75em;
 
 		.ai-badge {
 			font-size: 0.65rem;
@@ -69,57 +69,57 @@
 			border: 0.0625em solid light-dark(rgba(124, 58, 237, 0.2), rgba(139, 92, 246, 0.3));
 			font-weight: 600;
 		}
+	}
 
-		.sentiment-track {
-			height: 0.375em;
-			background: light-dark(#d4d4d8, #3f3f46);
-			border-radius: 0.1875em;
-			overflow: hidden;
-			margin: 0.75em 0;
-		}
+	.sentiment-track {
+		height: 0.375em;
+		background: light-dark(#d4d4d8, #3f3f46);
+		border-radius: 0.1875em;
+		overflow: hidden;
+		margin: 0.75em 0;
 
-		.sentiment-fill {
+		& .sentiment-fill {
 			height: 100%;
 			background: linear-gradient(90deg, #fbbf24, #ef4444);
 			transition: width 300ms ease;
 		}
+	}
 
-		.sentiment-labels {
-			display: flex;
-			justify-content: space-between;
-			font-size: 0.7rem;
+	.sentiment-labels {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.7rem;
+		color: light-dark(#666, #999);
+		margin-bottom: 0.75em;
+
+		.frustrated {
+			color: light-dark(#ef4444, #f87171);
+		}
+	}
+
+	.divider {
+		border: none;
+		border-top: 0.0625em solid light-dark(#e5e5e5, #3f3f46);
+		margin: 0.75em 0;
+	}
+
+	.key-value-row {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.85rem;
+		margin-bottom: 0.5em;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.key {
 			color: light-dark(#666, #999);
-			margin-bottom: 0.75em;
-
-			.frustrated {
-				color: light-dark(#ef4444, #f87171);
-			}
 		}
 
-		.divider {
-			border: none;
-			border-top: 0.0625em solid light-dark(#e5e5e5, #3f3f46);
-			margin: 0.75em 0;
-		}
-
-		.key-value-row {
-			display: flex;
-			justify-content: space-between;
-			font-size: 0.85rem;
-			margin-bottom: 0.5em;
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			.key {
-				color: light-dark(#666, #999);
-			}
-
-			.val {
-				font-family: monospace;
-				font-weight: 600;
-			}
+		.val {
+			font-family: monospace;
+			font-weight: 600;
 		}
 	}
 </style>

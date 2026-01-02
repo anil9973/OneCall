@@ -34,15 +34,27 @@
 		border-radius: 0.5em;
 		box-shadow: var(--card);
 		background-color: light-dark(rgb(252, 233, 233), hsl(0, 0%, 10%));
-		transition: all 300ms ease;
+		transition: translate 300ms ease;
+
+		&::details-content {
+			transition:
+				width 0.5s ease,
+				content-visibility 0.5s ease allow-discrete;
+			width: 0;
+			overflow: clip;
+		}
+
+		&[open]::details-content {
+			width: auto;
+		}
 
 		&:hover {
-			box-shadow: 0 0.25em 0.5em light-dark(rgba(0, 0, 0, 0.15), rgba(200, 200, 200, 0.25));
+			translate: 0 2px;
 		}
 
 		summary {
 			list-style-type: none;
-			transition: all 200ms ease;
+			transition: background-color 200ms ease;
 		}
 
 		&:not([open]) summary {
@@ -50,7 +62,7 @@
 			align-items: center;
 			justify-content: center;
 			column-gap: 0.5em;
-			padding: 1em;
+			padding: 1em 0.8em;
 			height: 100%;
 			writing-mode: vertical-rl;
 			transform: scale(-1, -1);
@@ -58,10 +70,6 @@
 
 			&:hover {
 				background-color: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.05));
-			}
-
-			&:active {
-				transform: scale(-0.98, -0.98);
 			}
 
 			span.vertical-text {
@@ -79,8 +87,7 @@
 		}
 
 		&[open] {
-			width: 80vw;
-			animation: book-expand 400ms ease-out;
+			flex-grow: 1;
 
 			summary {
 				padding: 0.2em;
@@ -107,29 +114,6 @@
 			background-color: #10b981;
 			box-shadow: 0 0 0.5em #10b981;
 			animation: pulse-glow 2s ease-in-out infinite;
-		}
-	}
-
-	@keyframes book-expand {
-		from {
-			width: 3em;
-			opacity: 0.8;
-		}
-		to {
-			width: 80vw;
-			opacity: 1;
-		}
-	}
-
-	@keyframes pulse-glow {
-		0%,
-		100% {
-			opacity: 1;
-			box-shadow: 0 0 0.5em #10b981;
-		}
-		50% {
-			opacity: 0.6;
-			box-shadow: 0 0 1em #10b981;
 		}
 	}
 </style>

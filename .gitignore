@@ -15,3 +15,6 @@ biome.json
 **/.env.*
 !**/.env.example
 **/*.log
+**/.firebase/
+**/firebase.json
+**/.firebaserc

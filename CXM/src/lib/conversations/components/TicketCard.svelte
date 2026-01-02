@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getRoleIcon, getStatusIcon } from "../utils/helpers.js";
 	import type { Ticket } from "../types/conversations.js";
+	import Icon from "./Icon.svelte";
 
 	interface Props {
 		ticket: Ticket;
@@ -9,6 +10,16 @@
 	}
 
 	let { ticket, selected = false, onClick = () => {} }: Props = $props();
+	let messageIntent = "question";
+	let statusIcon = "alert";
+	let categoryIcon = "dollar";
+
+	function onKeyDown(evt: KeyboardEvent) {
+		if (evt.key === "Enter" || evt.key === " ") {
+			evt.preventDefault();
+			onClick();
+		}
+	}
 </script>
 
 <conversation-ticket-card
@@ -17,17 +28,12 @@
 	onclick={onClick}
 	role="button"
 	tabindex="0"
-	onkeydown={(e) => {
-		if (e.key === "Enter" || e.key === " ") {
-			e.preventDefault();
-			onClick();
-		}
-	}}
+	onkeydown={onKeyDown}
 >
 	<div class="title-line">
 		<span>
-			<svg class="icon speaker">
-				<use href="/public/icons.svg#{ticket.status}"></use>
+			<svg class="icon">
+				<use href="/icons.svg#{ticket.status}"></use>
 			</svg>
 			<span class="title">{ticket.title}</span>
 		</span>
@@ -38,26 +44,22 @@
 
 	<div class="last-message-line">
 		<svg class="icon speaker">
-			<use href="/public/icons.svg#{ticket.lastMessageRole === 'user' ? 'customer' : 'ai'}"></use>
+			<use href="/icons.svg#{ticket.lastMessageRole === 'user' ? 'customer' : 'agent'}"></use>
 		</svg>
 		<svg class="icon">
-			<use href="/public/icons.svg#question"></use>
+			<use href="/icons.svg#{messageIntent}"></use>
 		</svg>
 		<span class="last-message-text">{ticket.lastMessagePreview}</span>
 	</div>
 
 	<div class="status-line">
 		<span>
-			<svg class="icon">
-				<use href="/public/icons.svg#{ticket.category === 'Refund' ? 'dollar' : 'bookmark'}"></use>
-			</svg>
+			<Icon name={categoryIcon} />
 			<span class="category">{ticket.category}</span>
 		</span>
 
 		<span data-status={ticket.status}>
-			<svg class="icon">
-				<use href="/public/icons.svg#alert"></use>
-			</svg>
+			<Icon name={statusIcon} />
 			<span class="status-label">{ticket.statusText}</span>
 		</span>
 	</div>
@@ -89,6 +91,10 @@
 			-webkit-line-clamp: 1;
 			-webkit-box-orient: vertical;
 			overflow: hidden;
+
+			& > svg + svg {
+				margin-left: -0.625em;
+			}
 		}
 
 		.title-line,

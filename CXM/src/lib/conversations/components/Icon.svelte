@@ -1,4 +1,3 @@
-<!-- src/lib/components/Icon.svelte -->
 <script lang="ts">
 	interface Props {
 		name: string;

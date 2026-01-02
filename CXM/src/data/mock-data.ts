@@ -6,7 +6,7 @@ import type {
 	AiSuggestion,
 	QuickAction,
 	Insight,
-} from "../types/conversations";
+} from "../lib/conversations/types/conversations.js";
 
 export const MOCK_TICKETS: Ticket[] = [
 	{

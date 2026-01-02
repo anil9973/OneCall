@@ -47,25 +47,25 @@
 			box-shadow: var(--card);
 			background-color: light-dark(white, black);
 		}
+	}
 
-		section[contenteditable="true"] {
-			--block-sdw-clr: 160 160 160;
-			font-family: monospace;
-			min-height: 5lh;
-			padding: 0.4em;
-			border-radius: 0.5em;
-			background-color: light-dark(white, black);
-			box-shadow:
-				inset -3px 3px 3px 0px rgb(var(--block-sdw-clr) / 0.5),
-				inset 3px -3px 3px 0px rgb(var(--block-sdw-clr) / 0.5);
-			font-size: 0.85rem;
-			line-height: 1.5;
-			outline: none;
+	section[contenteditable="true"] {
+		--block-sdw-clr: 160 160 160;
+		font-family: monospace;
+		min-height: 5lh;
+		padding: 0.4em;
+		border-radius: 0.5em;
+		background-color: light-dark(white, black);
+		box-shadow:
+			inset -3px 3px 3px 0px rgb(var(--block-sdw-clr) / 0.5),
+			inset 3px -3px 3px 0px rgb(var(--block-sdw-clr) / 0.5);
+		font-size: 0.85rem;
+		line-height: 1.5;
+		outline: none;
 
-			&:empty::before {
-				content: attr(placeholder);
-				color: light-dark(#999, #666);
-			}
+		&:empty::before {
+			content: attr(placeholder);
+			color: light-dark(#999, #666);
 		}
 	}
 </style>

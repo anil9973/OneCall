@@ -8,7 +8,6 @@
 
 	function handleBookUpdate(updatedBook: KnowledgeBook) {
 		books = books.map((b) => (b.id === updatedBook.id ? updatedBook : b));
-		console.log("Book updated:", updatedBook);
 	}
 
 	function handleToolUpdate(updatedTool: HttpTool) {

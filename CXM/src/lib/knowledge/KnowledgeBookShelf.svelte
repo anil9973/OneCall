@@ -18,16 +18,13 @@
 
 	function handleToggleBook(bookId: string) {
 		const book = books.find((b) => b.id === bookId);
-		if (book) {
-			onBookUpdate({ ...book, isActive: !book.isActive });
-		}
+		console.log(book);
+		// book && onBookUpdate({ ...book, isActive: !book.isActive }); //FIXME BUG
 	}
 
 	function handleSectionUpdate(bookId: string, sections: any[]) {
 		const book = books.find((b) => b.id === bookId);
-		if (book) {
-			onBookUpdate({ ...book, sections });
-		}
+		book && onBookUpdate({ ...book, sections });
 	}
 </script>
 

@@ -76,7 +76,6 @@
 					right: 0;
 					height: 0.125em;
 					background: linear-gradient(90deg, #ff00ff, #00ffff);
-					animation: gradient-slide 3s ease infinite;
 				}
 			}
 		}
@@ -98,18 +97,6 @@
 		}
 		to {
 			opacity: 1;
-		}
-	}
-
-	@keyframes gradient-slide {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
 		}
 	}
 </style>

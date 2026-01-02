@@ -4,6 +4,7 @@
 	import MessageInput from "./MessageInput.svelte";
 	import type { Ticket, Message, SystemEvent, TimelineSegment } from "../types/conversations";
 	import ConversationHeader from "./ConversationHeader.svelte";
+	import MessagesArea from "./MessagesArea.svelte";
 
 	interface Props {
 		ticket?: Ticket;
@@ -18,15 +19,7 @@
 
 <active-conversation-detail-column>
 	<ConversationHeader {ticket} />
-	<messages-display-area>
-		<TimelineBar segments={timelineSegments} />
-
-		<messages-history-scrollable-list>
-			{#each messages as message (message.id)}
-				<MessageBubble {message} />
-			{/each}
-		</messages-history-scrollable-list>
-	</messages-display-area>
+	<MessagesArea {timelineSegments} {messages} />
 
 	<MessageInput {onSendMessage} />
 </active-conversation-detail-column>
@@ -40,20 +33,5 @@
 		box-shadow: var(--card);
 		background: light-dark(hsl(0, 0%, 95%), hsl(0, 0%, 8%));
 		position: relative;
-	}
-
-	messages-display-area {
-		flex-grow: 1;
-		display: flex;
-		column-gap: 0.8em;
-		padding: 0.5em;
-		overflow-y: auto;
-
-		messages-history-scrollable-list {
-			flex: 1;
-			display: flex;
-			flex-direction: column;
-			row-gap: 0.5em;
-		}
 	}
 </style>

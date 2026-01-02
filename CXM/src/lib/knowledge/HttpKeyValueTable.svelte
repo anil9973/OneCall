@@ -26,11 +26,8 @@
 
 	function removeEmptyRows() {
 		const filledItems = items.filter((item) => item.key !== "" || item.value !== "");
-		if (filledItems.length === 0) {
-			items = [{ id: crypto.randomUUID(), key: "", value: "" }];
-		} else {
-			items = filledItems;
-		}
+		items = filledItems.length === 0 ? [{ id: crypto.randomUUID(), key: "", value: "" }] : filledItems;
+
 		ensureEmptyRow();
 		onChange(items);
 	}
@@ -52,16 +49,13 @@
 
 	function removeRow(id: string) {
 		items = items.filter((item) => item.id !== id);
-		if (items.length === 0) {
-			items = [{ id: crypto.randomUUID(), key: "", value: "" }];
-		}
+		if (items.length === 0) items = [{ id: crypto.randomUUID(), key: "", value: "" }];
+
 		onChange(items);
 	}
 
 	$effect(() => {
-		if (items.length === 0) {
-			items = [{ id: crypto.randomUUID(), key: "", value: "" }];
-		}
+		if (items.length === 0) items = [{ id: crypto.randomUUID(), key: "", value: "" }];
 	});
 </script>
 

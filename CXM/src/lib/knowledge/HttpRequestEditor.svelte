@@ -37,7 +37,3 @@
 		<HttpKeyValueTable bind:items={params} keyLabel="Param" valueLabel="Value" onChange={handleParamsChange} />
 	{/snippet}
 </TabularCarousel>
-
-<style>
-	/* Styles inherited from TabularCarousel */
-</style>

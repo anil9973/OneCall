@@ -105,135 +105,121 @@
 			display: block;
 			margin-bottom: 0.8em;
 
-			> div:first-child {
+			& > div:first-child {
 				font-size: 0.9rem;
 				color: light-dark(#666, #999);
 				margin-bottom: 0.5em;
 			}
 		}
+	}
 
-		.url-input-field {
+	.url-input-field {
+		border-radius: 0.8em;
+		box-shadow: var(--card);
+		background-color: light-dark(white, black);
+
+		.url-field-wrapper {
+			display: flex;
+			align-items: center;
+			padding-inline: 0.5em;
 			border-radius: 0.8em;
-			box-shadow: var(--card);
 			background-color: light-dark(white, black);
-			transition: box-shadow 200ms ease;
+			box-shadow: var(--neu-pressed);
 
 			&:focus-within {
-				box-shadow: 0 0.25em 0.5em light-dark(rgba(0, 0, 0, 0.15), rgba(200, 200, 200, 0.25));
-			}
-
-			.url-field-wrapper {
-				display: flex;
-				align-items: center;
-				padding-inline: 0.5em;
-				border-radius: 0.8em;
 				background-color: light-dark(white, black);
-				box-shadow: var(--neu-pressed);
-			}
-
-			select {
-				border: none;
-				background: none;
-				padding: 0.5em;
-				cursor: pointer;
-				font-weight: 600;
-				color: light-dark(#3b82f6, #60a5fa);
-				transition: color 200ms ease;
-
-				&:focus {
-					outline: none;
-				}
-
-				&:hover {
-					color: light-dark(#2563eb, #93c5fd);
-				}
-			}
-
-			input {
-				flex-grow: 1;
-				border: none;
-				border-radius: 0.8em;
-				padding: 0.5em;
-				font-size: inherit;
-				background: none;
-				transition: background 200ms ease;
-
-				&:focus {
-					outline: none;
-					background: light-dark(#fafafa, rgba(255, 255, 255, 0.02));
-				}
-			}
-
-			button {
-				padding: 0.5em;
-				border: none;
-				background: none;
-				cursor: pointer;
-				transition: transform 200ms ease;
-
-				&:hover:not(:disabled) {
-					transform: scale(1.2);
-				}
-
-				&:active:not(:disabled) {
-					transform: scale(0.9);
-				}
-
-				&:disabled {
-					opacity: 0.5;
-					cursor: not-allowed;
-				}
 			}
 		}
 
-		.request-response-editor {
+		select {
+			border: none;
+			background: none;
+			padding: 0.5em;
+			cursor: pointer;
+			font-weight: 600;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		input {
+			flex-grow: 1;
+			border: none;
+			border-radius: 0.8em;
+			padding: 0.5em;
+			font-size: inherit;
+			background: none;
+		}
+
+		button {
+			padding: 0.5em;
+			border: none;
+			background: none;
+			cursor: pointer;
+			transition: scale 200ms ease;
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+
+			&:hover:not(:disabled) {
+				scale: 1.2;
+			}
+
+			&:active:not(:disabled) {
+				scale: 0.9;
+			}
+		}
+	}
+
+	.request-response-editor {
+		display: flex;
+		column-gap: 0.5em;
+		margin-block: 0.8em;
+	}
+
+	details {
+		margin: 0;
+		min-height: 10lh;
+		border-radius: 0.5em;
+		box-shadow: var(--card);
+		background-color: light-dark(rgb(252, 233, 233), hsl(0, 0%, 10%));
+
+		&::details-content {
+			transition:
+				width 0.5s ease,
+				content-visibility 0.5s ease allow-discrete;
+			width: 0;
+			overflow: clip;
+		}
+
+		&[open]::details-content {
+			width: auto;
+		}
+
+		& summary {
+			list-style-type: none;
+		}
+
+		&:not([open]) summary {
 			display: flex;
+			align-items: center;
+			justify-content: center;
 			column-gap: 0.5em;
-			margin-block: 0.8em;
+			padding: 1em 0.5em;
+			font-weight: bold;
+			writing-mode: vertical-rl;
+			transform: scale(-1, -1);
+			cursor: pointer;
 		}
 
-		details {
-			flex: 1;
-			margin: 0;
-			min-height: 10lh;
-			border-radius: 0.5em;
-			box-shadow: var(--card);
-			background-color: light-dark(rgb(252, 233, 233), hsl(0, 0%, 10%));
-			transition: all 200ms ease;
+		&[open] {
+			flex-grow: 1;
 
-			&:hover {
-				box-shadow: 0 0.25em 0.5em light-dark(rgba(0, 0, 0, 0.15), rgba(200, 200, 200, 0.25));
-			}
-
-			summary {
-				list-style-type: none;
-			}
-
-			&:not([open]) summary {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				column-gap: 0.5em;
-				padding: 1em 0.5em;
-				font-weight: bold;
-				writing-mode: vertical-rl;
-				transform: scale(-1, -1);
-				cursor: pointer;
-				transition: background-color 200ms ease;
-
-				&:hover {
-					background-color: light-dark(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.05));
-				}
-
-				&:active {
-					background-color: light-dark(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.08));
-				}
-			}
-
-			&[open] {
-				summary {
-					display: none;
-				}
+			& summary {
+				display: none;
 			}
 		}
 	}

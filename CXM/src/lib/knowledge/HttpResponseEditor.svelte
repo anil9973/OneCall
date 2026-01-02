@@ -50,29 +50,29 @@
 </response-body-output>
 
 <style>
+	.loading {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1em;
+		height: 15em;
+		color: light-dark(#666, #999);
+
+		.spinner {
+			width: 2em;
+			height: 2em;
+			border: 0.25em solid light-dark(#e5e7eb, #374151);
+			border-top-color: light-dark(#3b82f6, #60a5fa);
+			border-radius: 50%;
+			animation: spin 1s linear infinite;
+		}
+	}
+
 	response-body-output {
 		display: block;
 		padding: 1em;
 		min-height: 10em;
-
-		.loading {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			gap: 1em;
-			height: 15em;
-			color: light-dark(#666, #999);
-
-			.spinner {
-				width: 2em;
-				height: 2em;
-				border: 0.25em solid light-dark(#e5e7eb, #374151);
-				border-top-color: light-dark(#3b82f6, #60a5fa);
-				border-radius: 50%;
-				animation: spin 1s linear infinite;
-			}
-		}
 
 		.response-content {
 			animation: fade-in 300ms ease-out;
@@ -145,19 +145,16 @@
 		}
 
 		.schema-editor-wrapper {
-			--block-sdw-clr: light-dark(160 160 160, 60 60 60);
+			--block-sdw-clr: 160 160 160;
 			border-radius: 0.5em;
 			background-color: light-dark(white, black);
 			box-shadow:
-				inset -0.1875em 0.1875em 0.1875em 0 rgb(var(--block-sdw-clr) / 0.5),
-				inset 0.1875em -0.1875em 0.1875em 0 rgb(var(--block-sdw-clr) / 0.5);
-			transition: box-shadow 200ms ease;
+				inset -3px 3px 3px 0px rgb(var(--block-sdw-clr) / 0.5),
+				inset 3px -3px 3px 0px rgb(var(--block-sdw-clr) / 0.5);
+			transition: background-color 200ms ease;
 
 			&:focus-within {
-				box-shadow:
-					inset -0.1875em 0.1875em 0.1875em 0 rgb(var(--block-sdw-clr) / 0.6),
-					inset 0.1875em -0.1875em 0.1875em 0 rgb(var(--block-sdw-clr) / 0.6),
-					0 0 0 0.125em light-dark(rgba(59, 130, 246, 0.3), rgba(96, 165, 250, 0.3));
+				background-color: light-dark(hsl(0, 0%, 96%), black);
 			}
 
 			textarea {
@@ -167,7 +164,6 @@
 				border: none;
 				border-radius: 0.5em;
 				background: none;
-				font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
 				font-size: 0.85rem;
 				line-height: 1.6;
 				color: inherit;

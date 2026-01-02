@@ -24,7 +24,7 @@
 </script>
 
 <http-tool-box>
-	<header>Tool</header>
+	<header><span>Tool</span></header>
 
 	<tool-body>
 		<ToolDescriptionField bind:value={description} />
@@ -47,42 +47,53 @@
 		border-radius: 0.5em;
 		box-shadow: var(--card);
 		background-color: light-dark(hsl(275, 81%, 96%), hsl(0, 0%, 5%));
-		animation: tool-slide-in 400ms ease-out;
-		transition: box-shadow 200ms ease;
+		animation: tool-slide-up 400ms ease-out;
+		animation-delay: calc(100ms * sibling-index());
+		position: relative;
+		isolation: isolate;
 
-		&:hover {
-			box-shadow: 0 0.25em 0.75em light-dark(rgba(0, 0, 0, 0.15), rgba(200, 200, 200, 0.3));
+		&::before {
+			content: " ";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			box-shadow: 0 0 0.7em 0 rgba(255, 81, 0, 0.5);
+			border-radius: 0.4em;
+			opacity: 0;
+			transition: opacity 1000ms ease-in-out;
 		}
 
-		header {
-			padding: 0.3em 1em;
-			border-radius: 0.5em 0.5em 0 0;
-			box-shadow: var(--card);
-			background-color: light-dark(whitesmoke, hsl(0, 0%, 10%));
-			font-weight: 600;
-			transition: background 200ms ease;
-
-			&:hover {
-				background-color: light-dark(#e8e8e8, hsl(0, 0%, 12%));
-			}
-		}
-
-		tool-body {
-			display: flex;
-			justify-content: space-between;
-			gap: 1em;
-			padding: 1em;
+		&:hover::before {
+			opacity: 1;
 		}
 	}
 
-	@keyframes tool-slide-in {
+	header {
+		padding: 0.3em 1em;
+		border-radius: 0.5em 0.5em 0 0;
+		box-shadow: var(--card);
+		background-color: light-dark(whitesmoke, hsl(0, 0%, 10%));
+
+		& span {
+			font-weight: 600;
+		}
+	}
+
+	tool-body {
+		display: flex;
+		justify-content: space-between;
+		gap: 1em;
+		padding: 1em;
+	}
+
+	@keyframes tool-slide-up {
 		from {
 			opacity: 0;
-			transform: translateY(1em);
+			translate: 0 100%;
 		}
 		to {
 			opacity: 1;
-			transform: translateY(0);
+			translate: 0 0;
 		}
 	}
 </style>

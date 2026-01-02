@@ -1,6 +1,6 @@
 <script>
-	import ConversationApp from "./lib/conversations/components/ConversationApp.svelte";
-	import KnowledgeApp from "./lib/knowledge/KnowledgeApp.svelte";
+	import ConversationApp from "./lib/conversations/components/ConversationPage.svelte";
+	import KnowledgeApp from "./lib/knowledge/KnowledgePage.svelte";
 </script>
 
 <main>
@@ -23,8 +23,8 @@
 			</li>
 		</nav>
 	</aside>
-	<KnowledgeApp />
-	<!-- <ConversationApp /> -->
+	<!-- <KnowledgeApp /> -->
+	<ConversationApp />
 </main>
 
 <style>

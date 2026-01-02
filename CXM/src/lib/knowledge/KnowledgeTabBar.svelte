@@ -47,7 +47,7 @@
 
 	<knowledge-search-field>
 		<search>
-			<input type="text" placeholder="Search" value={searchQuery} oninput={handleSearchInput} />
+			<input type="text" placeholder="🔎 Search" value={searchQuery} oninput={handleSearchInput} />
 		</search>
 	</knowledge-search-field>
 </knowledge-tabs-search-bar>
@@ -77,20 +77,15 @@
 			cursor: pointer;
 			transition:
 				background-color 200ms ease,
-				transform 200ms ease;
+				scale 200ms ease;
 
 			&:hover {
 				background-color: light-dark(#ddd, #666);
-				transform: translateY(-0.125em);
-			}
-
-			&:active {
-				transform: translateY(0);
+				scale: 1.1;
 			}
 
 			&.active {
 				background-color: light-dark(white, black);
-				box-shadow: var(--card);
 			}
 
 			span {
@@ -115,7 +110,7 @@
 		}
 
 		search {
-			--block-sdw-clr: light-dark(160 160 160, 60 60 60);
+			--block-sdw-clr: 160 160 160;
 			border-radius: 1em;
 			background-color: light-dark(white, black);
 			box-shadow:

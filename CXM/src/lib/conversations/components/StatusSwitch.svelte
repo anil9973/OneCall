@@ -42,21 +42,21 @@
 			font-size: small;
 			color: light-dark(#666, #999);
 		}
+	}
 
-		select {
-			width: 100%;
-			padding: 0.5em;
-			border: none;
-			border-radius: 0.5em;
-			box-shadow: var(--card);
-			background-color: light-dark(white, black);
-			cursor: pointer;
-			font-size: 0.9rem;
+	select {
+		width: 100%;
+		padding: 0.5em;
+		border: none;
+		border-radius: 0.5em;
+		box-shadow: var(--card);
+		background-color: light-dark(white, black);
+		cursor: pointer;
+		font-size: 0.9rem;
 
-			&:focus {
-				outline: none;
-				box-shadow: var(--neu-pressed);
-			}
+		&:focus {
+			outline: none;
+			box-shadow: var(--neu-pressed);
 		}
 	}
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Icon from "../conversations/components/Icon.svelte";
-
 	import type { KnowledgeSection } from "./types/knowledge.js";
+	import Icon from "../conversations/components/Icon.svelte";
+	import BookSectionBranch from "./BookSectionBranch.svelte";
 
 	interface Props {
 		section: KnowledgeSection;
@@ -15,8 +15,8 @@
 		onToggle(section.id);
 	}
 
-	function handleChildrenUpdate(children: KnowledgeSection[]) {
-		onChildUpdate(section.id, children);
+	function handleChildrenUpdate(sectionId: string, children: KnowledgeSection[]) {
+		onChildUpdate(sectionId, children);
 	}
 </script>
 
@@ -38,7 +38,7 @@
 	{#if section.isExpanded && section.children && section.children.length > 0}
 		<ul>
 			{#each section.children as child (child.id)}
-				<svelte:self section={child} {onToggle} onChildUpdate={handleChildrenUpdate} />
+				<BookSectionBranch section={child} {onToggle} onChildUpdate={handleChildrenUpdate} />
 			{/each}
 		</ul>
 	{/if}

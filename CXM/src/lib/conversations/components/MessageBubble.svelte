@@ -49,30 +49,30 @@
 		&[data-align="right"] {
 			align-self: flex-end;
 		}
+	}
 
-		.message-content-card {
-			border-radius: 0.5em;
-			box-shadow: var(--card);
-			background: light-dark(white, hsl(0, 0%, 10%));
-			transition: translate 200ms ease-out;
+	.message-content-card {
+		border-radius: 0.5em;
+		box-shadow: var(--card);
+		background: light-dark(white, hsl(0, 0%, 10%));
+		transition: translate 200ms ease-out;
 
-			&:hover {
-				translate: 0 -0.125em;
-			}
+		&:hover {
+			translate: 0 -0.125em;
 		}
+	}
 
-		blockquote.message-text {
-			margin: 0;
-			padding: 0.5em;
-			font-size: 0.9rem;
-		}
+	blockquote.message-text {
+		margin: 0;
+		padding: 0.5em;
+		font-size: 0.9rem;
+	}
 
-		.message-status {
-			display: flex;
-			justify-content: space-between;
-			font-size: 0.8rem;
-			padding: 0.125em 0.5em;
-			color: light-dark(#666, #999);
-		}
+	.message-status {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.8rem;
+		padding: 0.125em 0.5em;
+		color: light-dark(#666, #999);
 	}
 </style>

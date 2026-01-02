@@ -22,13 +22,9 @@
 	</button>
 
 	<div class="audio-waveform" data-playing={isPlaying}>
-		{#if waveform.length > 0}
-			{#each waveform as amplitude, i}
+		<!-- {#each waveform as amplitude, i}
 				<div class="waveform-bar" style="height: {amplitude * 100}%"></div>
-			{/each}
-		{:else}
-			<img src="/assets/waveform.jpg" alt="Audio waveform" />
-		{/if}
+		{/each} -->
 	</div>
 
 	<span class="duration">{duration}</span>
@@ -66,13 +62,7 @@
 			gap: 0.125em;
 			overflow: hidden;
 
-			img {
-				height: 100%;
-				width: 100%;
-				object-fit: cover;
-			}
-
-			.waveform-bar {
+			/* .waveform-bar {
 				flex: 1;
 				min-width: 0.125em;
 				background: light-dark(#ccc, #555);
@@ -82,7 +72,7 @@
 
 			&[data-playing="true"] .waveform-bar {
 				background: light-dark(#3b82f6, #60a5fa);
-			}
+			} */
 		}
 
 		.duration {
